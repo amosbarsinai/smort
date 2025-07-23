@@ -1,0 +1,6 @@
+.venv/
+.vscode/
+build/
+CMakeLists.txt
+picklenicker.py
+pyproject.toml
