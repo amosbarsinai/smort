@@ -1,6 +1,7 @@
 .venv/
 .vscode/
 build/
-CMakeLists.txt
 picklenicker.py
-pyproject.toml
+smort.png
+.gitignore
+smort/_smort*.so

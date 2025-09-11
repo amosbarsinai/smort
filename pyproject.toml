@@ -1,0 +1,13 @@
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "smort"
+version = "0.1.0"
+description = "The braincell-efficient library"
+authors = [{name = "Amos Bar Sinai"}]
+requires-python = ">=3.11"
+
+[tool.scikit-build]
+wheel.packages = ["smort"]

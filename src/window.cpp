@@ -9,6 +9,10 @@
 #include <chrono>
 #include <thread>
 
+Window::Window(const std::string& title)
+    : window(sf::VideoMode(800, 600), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
+    target_delta(1.0f / 60.0f) {}
+
 Window::Window(const std::string& title, int width, int height)
     : window(sf::VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
     target_delta(1.0f / 60.0f) {}
@@ -105,9 +109,32 @@ void Window::blit(const std::string& path, float x, float y, float width, float 
     );
     window.draw(sprite);
 }
+
 // Note: The blit methods load the texture from the specified path if it is not already cached.
 // The first blit method draws the texture at the specified position, while the second one scales the texture to the specified width and height before drawing it.
 // The texture is cached in a static unordered_map to avoid reloading it multiple times, improving performance.
+
+void Window::blit(Image& image, float x, float y) {
+    sf::Texture& texture = *image.texture;
+
+    sf::Sprite sprite(texture);
+    sprite.setPosition(x, y);
+    window.draw(sprite);
+}
+
+void Window::blit(Image& image, float x, float y, float width, float height) {
+    sf::Texture& texture = *image.texture;
+    
+    sf::Sprite sprite(texture);
+    sprite.setPosition(x, y);
+    sprite.setScale(
+        width / texture.getSize().x,
+        height / texture.getSize().y
+    );
+    window.draw(sprite);
+}
+
+
 
 void Window::close() {
     window.close();
@@ -131,6 +158,15 @@ void Window::set_height(int new_height) {
     window.setSize(sf::Vector2u(window.getSize().x, new_height));
 }
 
+Vector2 Window::get_size() const {
+    sf::Vector2u size = window.getSize();
+    return Vector2(size.x, size.y);
+}
+
+void Window::set_size(Vector2 new_size) {
+    if (new_size.x < 1 || new_size.y < 1) err("Cannot resize window to dimensions under 1px.");
+    window.setSize(sf::Vector2u(new_size.x, new_size.y));
+}
 
 void Window::smort() {
     sf::Texture texture;
@@ -142,4 +178,8 @@ void Window::smort() {
     sprite.setPosition(42.f, 42.f);
     sprite.setScale(0.5f, 0.5f);
     window.draw(sprite);
+}
+
+std::string Window::to_string() {
+    return "Window(" + std::to_string(get_width()) + "x" + std::to_string(get_height()) + ")";
 }

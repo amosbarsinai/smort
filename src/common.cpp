@@ -52,22 +52,15 @@ Vector2 get_size(const std::string& image) {
     return Vector2(texture.getSize().x, texture.getSize().y);
 }
 
-int get_width(const std::string& image) {
-    sf::Texture& texture = texture_cache[image];
-    if (texture.getSize().x == 0) {
-        if (!silent_load(texture, image)) {
-            imgloaderr(image);
+void add_texture(const std::string& path) {
+    // First, if the path is relative, make it absolute
+    std::string abs_path = path;
+    if (path[0] != '/') {
+        char cwd[1024];
+        if (getcwd(cwd, sizeof(cwd)) != nullptr) {
+            abs_path = std::string(cwd) + "/" + path;
+            texture_cache[abs_path];  // Preload the texture
         }
     }
-    return texture.getSize().x;
-}
-
-int get_height(const std::string& image) {
-    sf::Texture& texture = texture_cache[image];
-    if (texture.getSize().x == 0) {
-        if (!silent_load(texture, image)) {
-            imgloaderr(image);
-        }
-    }
-    return texture.getSize().y;
+    texture_cache[abs_path];  // Preload the texture
 }

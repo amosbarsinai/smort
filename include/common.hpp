@@ -15,6 +15,5 @@ bool silent_load(sf::Texture& texture, const std::string& path);
 
 extern std::unordered_map<std::string, sf::Texture> texture_cache;
 
-Vector2 get_size(const std::string& image);
-int get_width(const std::string& image);
-int get_height(const std::string& image);
+void add_texture(const std::string& path);
+void get_texture(const std::string& path);

@@ -2,18 +2,56 @@ from typing import overload
 
 from . import keyboard
 
+
+class SmortRuntimeError(Exception):
+    """Colliqual exception raised for runtime errors in Smort."""
+    pass
+
+class SmortImageError(SmortRuntimeError):
+    """Exception raised for errors in the Smort image handling."""
+    pass
+
+class Vector2:
+    x: int
+    y: int
+
+    def __str__(self) -> str: ...
+
+class Image:
+    width: int
+    height: int
+    size: Vector2
+
+    def __str__(self) -> str: ...
+
 class Window:
     width: int
     height: int
-    
-    @overload
-    def __init__(self, title: str, width: int, height: int) -> None: ...
-    @overload
-    def __init__(self, title: str, width: int, height: int, handles_updates: bool) -> None: ...
+    size: Vector2
 
-    def clear(self) -> None: ...    # Clear the window with the current background color
-    def tick(self) -> None: ...     # Update the window, process events, and display the current frame
-    def is_open(self) -> bool: ...  # Check if the window is still open
+    @overload
+    def __init__(self, title: str) -> None:
+        """Initialize a new window with the given title and default dimensions."""
+        ...
+    @overload
+    def __init__(self, title: str, width: int, height: int) -> None:
+        """Initialize a new window with the given title and dimensions."""
+        ...
+    @overload
+    def __init__(self, title: str, width: int, height: int, handles_updates: bool) -> None:
+        """Initialize a new window with the given title, dimensions, and update handling flag."""
+        ...
+
+    def clear(self) -> None:
+        """Clear the window with the current background color"""
+        ...
+    def tick(self) -> None:
+        """Update the window, process events, and display the current frame"""
+        ...
+
+    def is_open(self) -> bool: 
+        """Check if the window is still open"""
+        ...
 
     @overload
     def fill(self, r: float, g: float, b: float) -> None: ...
@@ -25,9 +63,14 @@ class Window:
     @overload
     def blit(self, path: str, x: int, y: int, width: int, height: int) -> None: ...
 
-    def close() -> None: ...
+    @overload
+    def blit(self, image: Image, x: int, y: int) -> None: ...
+    @overload
+    def blit(self, image: Image, x: int, y: int, width: int, height: int) -> None: ...
 
-    def smort() -> None: ...       # smort
+    def close(self) -> None: ...
+
+    def __str__() -> str: ...
 
 def get_size(image: str) -> None: ...
 def get_width(image: str) -> None: ...

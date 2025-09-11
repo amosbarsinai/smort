@@ -1,16 +1,11 @@
 #pragma once
 
+#include <string>
+
 class Vector2 {
   public:
     int x;
     int y;
     Vector2(int x, int y);
-};
-
-class Vector3 {
-  public:
-    int x;
-    int y;
-    int z;
-    Vector3(int x, int y, int z);
+    std::string to_string();
 };
