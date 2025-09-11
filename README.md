@@ -37,7 +37,7 @@ while window.is_open():
 Contributions are welcome! Please open issues or pull requests on GitHub.
 
 ## NOTE:
-Smort is still under heavy development. It is not yet recommended for personal use. Any contributions to the project will be greatly appreciated. Pull requests can be opened on [GitHub](https://github.com/AmosBarSinai/smort/issues).
+Smort is still under heavy development. It is not yet recommended for personal use. Any contributions to the project will be greatly appreciated. Pull requests can be opened on [GitHub](https://github.com/AmosBarSinai/smort/pulls).
 
 
 ### Licensing:
