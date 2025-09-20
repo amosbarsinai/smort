@@ -5,13 +5,9 @@ import os
 import shlex
 import sys
 
-if os.geteuid() != 0:
-    print("This script must be run as root. Re-executing with as sudo...")
-    os.execvp("sudo", ["sudo"] + ["python3"] + sys.argv)
-
 NINJA_LIB_BUILD_CMDS = [
     ["ninja"],
-    ["ninja", "install"]
+    ["sudo", "ninja", "install"]
 ]
 
 PY_LIB_INSTALL_CMDS = [

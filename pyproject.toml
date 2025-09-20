@@ -11,3 +11,4 @@ requires-python = ">=3.11"
 
 [tool.scikit-build]
 wheel.packages = ["smort"]
+sdist.include = ["smort/_smort*.so"]
