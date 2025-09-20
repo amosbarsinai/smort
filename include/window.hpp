@@ -1,15 +1,21 @@
-// include/window.hpp
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <unordered_map>
+#include <string>
 #include "image.hpp"
 #include "vector.hpp"
 
 class Window {
 public:
-    Window(const std::string& title);
-    Window(const std::string& title, int width, int height);
-    Window(const std::string& title, int width, int height, bool handles_updates);
+    // Single constructor with defaults
+    Window(const std::string& title,
+           int width = 800,
+           int height = 600,
+           bool handles_updates = true);
+
+    // Property accessors for title
+    std::string get_title() const;
+    void set_title(const std::string& title);
+
     void clear();
     void tick();
     bool is_open();
@@ -42,12 +48,9 @@ public:
 
 private:
     sf::RenderWindow window;
-
     bool handles_updates;
-
     float delta_time = 0.0f;
     float target_delta = 1.0f / 60.0f;
-    float get_delta_time() const { return delta_time; }
-    
+
     void display();
 };

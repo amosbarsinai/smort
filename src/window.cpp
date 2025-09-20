@@ -9,14 +9,6 @@
 #include <chrono>
 #include <thread>
 
-Window::Window(const std::string& title)
-    : window(sf::VideoMode(800, 600), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
-    target_delta(1.0f / 60.0f) {}
-
-Window::Window(const std::string& title, int width, int height)
-    : window(sf::VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
-    target_delta(1.0f / 60.0f) {}
-
 Window::Window(const std::string& title, int width, int height, bool handles_updates)
     : window(sf::VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
     target_delta(1.0f / 60.0f), handles_updates(handles_updates) {}

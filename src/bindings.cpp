@@ -16,9 +16,11 @@ PYBIND11_MODULE(_smort, m) {
     pySmortImageError = pybind11::register_exception<SmortImageError>(m, "ImageError");
 
     py::class_<Window>(m, "Window")
-        .def(py::init<std::string>())
-        .def(py::init<std::string, int, int>())
-        .def(py::init<std::string, int, int, bool>())
+        .def(py::init<const std::string&, int, int, bool>(),
+             py::arg("title") = "My Nice Little Window",
+             py::arg("width") = 800,
+             py::arg("height") = 600,
+             py::arg("handles_updates") = true)
         .def("clear", &Window::clear)
         .def("tick", &Window::tick)
         .def("is_open", &Window::is_open)

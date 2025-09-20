@@ -29,16 +29,7 @@ class Window:
     height: int
     size: Vector2
 
-    @overload
-    def __init__(self, title: str) -> None:
-        """Initialize a new window with the given title and default dimensions."""
-        ...
-    @overload
-    def __init__(self, title: str, width: int, height: int) -> None:
-        """Initialize a new window with the given title and dimensions."""
-        ...
-    @overload
-    def __init__(self, title: str, width: int, height: int, handles_updates: bool) -> None:
+    def __init__(self, title: str = "My Nice Little Window", width: int = 600, height: int = 800, handles_updates: bool = True) -> None:
         """Initialize a new window with the given title, dimensions, and update handling flag."""
         ...
 
