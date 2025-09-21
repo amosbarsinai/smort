@@ -9,9 +9,9 @@
 #include <chrono>
 #include <thread>
 
-Window::Window(const std::string& title, int width, int height, bool handles_updates)
+Window::Window(const std::string& title, int width, int height, bool handles_updates, int target_delta)
     : window(sf::VideoMode(width, height), title, sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close),
-    target_delta(1.0f / 60.0f), handles_updates(handles_updates) {}
+    target_delta(target_delta), handles_updates(handles_updates) {}
 
 void Window::clear() {
     window.clear();

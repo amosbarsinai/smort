@@ -20,7 +20,9 @@ PYBIND11_MODULE(_smort, m) {
              py::arg("title") = "My Nice Little Window",
              py::arg("width") = 800,
              py::arg("height") = 600,
-             py::arg("handles_updates") = true)
+             py::arg("handles_updates") = true,
+             py::arg("target_delta") = 1.0f / 60.0f
+            )
         .def("clear", &Window::clear)
         .def("tick", &Window::tick)
         .def("is_open", &Window::is_open)

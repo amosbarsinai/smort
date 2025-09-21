@@ -7,10 +7,13 @@
 class Window {
 public:
     // Single constructor with defaults
-    Window(const std::string& title,
-           int width = 800,
-           int height = 600,
-           bool handles_updates = true);
+    Window(
+        const std::string& title,
+        int width,
+        int height,
+        bool handles_updates,
+        int target_delta
+    );
 
     // Property accessors for title
     std::string get_title() const;
