@@ -64,4 +64,3 @@ log_build("Smort Python Package")
 for command in PY_LIB_INSTALL_CMDS:
     run_cmd(command)
 log_build("Smort Python Package", built=True)
-

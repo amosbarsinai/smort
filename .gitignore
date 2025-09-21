@@ -2,6 +2,6 @@
 .vscode/
 build/
 picklenicker.py
-smort.png
+smort.jpg
 .gitignore
 smort/_smort*.so
