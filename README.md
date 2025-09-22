@@ -6,7 +6,7 @@
 ## Features
 
 - Simple API for creating windows and handling graphics
-- Keyboard and mouse utilities
+- Keyboard and (soon) mouse utilities
 - Error handling for robust applications
 - Python bindings via pybind11
 
