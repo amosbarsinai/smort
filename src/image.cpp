@@ -31,3 +31,40 @@ Image::~Image() {
 std::string Image::to_string() {
     return "Image(" + std::to_string(width) + "x" + std::to_string(height) + ")";
 }
+
+void Image::blit(Image& src, int x, int y, int width, int height) {
+    if (width < 0)
+        err("Cannot scale image to negative values. (Tried scaling width to " + std::to_string(width) + ")");
+    if (height < 0)
+        err("Cannot scale image to negative values. (Tried scaling height to " + std::to_string(height) + ")");
+
+    int srcWidth = (width > 0) ? width : src.width;
+    int srcHeight = (height > 0) ? height : src.height;
+
+    sf::RenderTexture renderTexture;
+    renderTexture.create(this->width, this->height);
+    renderTexture.clear(sf::Color::Transparent);
+
+    sf::Sprite destSprite(*this->texture);
+    renderTexture.draw(destSprite);
+
+    sf::Sprite srcSprite(*src.texture);
+    srcSprite.setPosition(static_cast<float>(x), static_cast<float>(y));
+    // Scale if needed
+    float scaleX = static_cast<float>(srcWidth) / static_cast<float>(src.width);
+    float scaleY = static_cast<float>(srcHeight) / static_cast<float>(src.height);
+    srcSprite.setScale(scaleX, scaleY);
+
+    renderTexture.draw(srcSprite);
+    renderTexture.display();
+
+    this->texture->update(renderTexture.getTexture());
+}
+
+void Image::blit(Image& src, int x, int y) {
+    blit(src, x, y, src.get_width(), src.get_height());
+}
+
+void Image::blit(Image& src) {
+    blit(src, 0, 0);
+}

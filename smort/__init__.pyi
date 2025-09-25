@@ -15,14 +15,19 @@ class Vector2:
     x: int
     y: int
 
-    def __str__(self) -> str: ...
-
 class Image:
     width: int
     height: int
     size: Vector2
 
-    def __str__(self) -> str: ...
+    # The blit methods receive an Image instance as the first argument and blit it onto their own.
+    # The x and y parameters specify the position to blit the source image onto the destination image.
+    # The width and height parameters specify the dimensions to scale the source image to before blitting.
+    # If width and height are not provided, the source image is blitted at its original size.
+    @overload
+    def blit(self, src: Image, x: int = 0, y: int = 0) -> None: ...
+    @overload
+    def blit(self, src: Image, x: int = 0, y: int = 0, width: int = 0, height: int = 0) -> None: ...
 
 class Window:
     width: int
@@ -60,8 +65,6 @@ class Window:
     def blit(self, image: Image, x: int, y: int, width: int, height: int) -> None: ...
 
     def close(self) -> None: ...
-
-    def __str__() -> str: ...
 
 def get_size(image: str) -> None: ...
 def get_width(image: str) -> None: ...

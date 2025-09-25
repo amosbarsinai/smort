@@ -12,7 +12,7 @@ public:
         int width,
         int height,
         bool handles_updates,
-        int target_delta
+        float target_delta
     );
 
     // Property accessors for title

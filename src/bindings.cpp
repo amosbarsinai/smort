@@ -16,7 +16,7 @@ PYBIND11_MODULE(_smort, m) {
     pySmortImageError = pybind11::register_exception<SmortImageError>(m, "ImageError");
 
     py::class_<Window>(m, "Window")
-        .def(py::init<const std::string&, int, int, bool>(),
+        .def(py::init<const std::string&, int, int, bool, float>(),
              py::arg("title") = "My Nice Little Window",
              py::arg("width") = 800,
              py::arg("height") = 600,
@@ -52,6 +52,10 @@ PYBIND11_MODULE(_smort, m) {
         .def_property_readonly("width", &Image::get_width)
         .def_property_readonly("height", &Image::get_height)
         .def_property_readonly("size", &Image::get_size)
+
+        .def("blit", py::overload_cast<Image&>(&Image::blit))
+        .def("blit", py::overload_cast<Image&, int, int>(&Image::blit))
+        .def("blit", py::overload_cast<Image&, int, int, int, int>(&Image::blit))
 
         .def("__str__", &Image::to_string)
         ;

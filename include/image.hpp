@@ -21,4 +21,8 @@ class Image {
     sf::Texture* texture;
 
     std::string to_string();
+
+  void blit(Image& src, int x, int y, int width, int height);
+  void blit(Image& src, int x, int y);
+  void blit(Image& src);
 };

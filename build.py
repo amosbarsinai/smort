@@ -50,7 +50,7 @@ def run_cmd(cmd):
     try:
         subprocess.run(cmd, check=True)
     except subprocess.CalledProcessError as e:
-        print(f"Command `{shlex.join(cmd)}` failed with exit code {e.returncode}. Exiting.")
+        print(f"\033[1;31mBUILD FAILED\033[0m: Command `{shlex.join(cmd)}` failed with exit code {e.returncode}. Exiting.")
         sys.exit(e.returncode)
     else:
         log_cmd(shlex.join(cmd), finished=True)
