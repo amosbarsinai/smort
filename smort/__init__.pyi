@@ -2,7 +2,6 @@ from typing import overload
 
 from . import keyboard
 
-
 class SmortRuntimeError(Exception):
     """Colliqual exception raised for runtime errors in Smort."""
     pass
@@ -19,6 +18,8 @@ class Image:
     width: int
     height: int
     size: Vector2
+
+    def __init__(self, path: str) -> None: ...
 
     # The blit methods receive an Image instance as the first argument and blit it onto their own.
     # The x and y parameters specify the position to blit the source image onto the destination image.
